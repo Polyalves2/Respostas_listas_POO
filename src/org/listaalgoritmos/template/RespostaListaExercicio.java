@@ -94,13 +94,14 @@ public class RespostaListaExercicio {
 	 */
 	public static void imprimirArrayInverso(int[] array)
 	{
-		for (int i = array.length - 1; i >= 0; i--) {
-          System.out.print(array[i]);
-           if (i > 0) { 
-		 System.out.print(" , ");
+		for (int i = (array.length - 1); i >= 0; i--) {
+		   if (i > 0)
+             System.out.print(array[i]+",");
+			else
+		     System.out.print(array[i]);
 	    }
 	  }
-    }
+	
 	
 	/**
 	 * Método deve imprimir os elementos primos de um array de inteiros. O formato da impressão 
@@ -110,12 +111,25 @@ public class RespostaListaExercicio {
 	 */
 	public static void imprimirElementosPrimos(int[] array) 
 	{
-		  for (int numero : array) {
-	          if (numero < 2 ) {
-	            System.out.print(numero + " ");
-	         }
-	      }
-	   } 
+		    for (int numero : array) {
+		        if (primos(numero)) {
+		            System.out.print(numero + " ");
+		        }
+		    }
+		}
+
+		public static boolean primos(int numero) {
+		    if (numero <= 1) {
+		        return false;
+		    }
+		    for (int i = 2; i <= Math.sqrt(numero); i++) {
+		        if (numero % i == 0) {
+		            return false;
+		        }
+		    }
+		    return true;
+		}
+
 	
 	/**
 	 * Método deve imprimir os elementos ímpares de um array de inteiros. O formato da impressão 
@@ -157,22 +171,17 @@ public class RespostaListaExercicio {
 	 */
 	public static void imprimirMaiorMenorElemento(int[] array) 
 	{
-		if (array.length == 0) {
-            return; 
+		Integer MAIOR = Integer.MIN_VALUE;
+		Integer MENOR = Integer.MAX_VALUE;
+		
+		for (int numero : array) {
+		   if (numero > MAIOR)
+			 MAIOR = numero;
+			  else if(numero<MENOR) 
+			  MENOR = numero;
 		}
-        int menor = array[0];
-        int maior = array[0];
 
-        for (int numero : array) {
-            if (numero < menor) {
-                menor = numero;
-            }
-            if (numero > maior) {
-                maior = numero;
-            }
-        }
-
-        System.out.print("Maior: " + maior + " Menor: " + menor);
+        System.out.print(MAIOR+ " " + MENOR+ " ");
 	}
 	
 	/**
